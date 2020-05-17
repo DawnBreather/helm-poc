@@ -1,0 +1,17 @@
+liquibase:
+  container:
+    image: dawnbreather/tmp:liquibase-location
+  config:
+    env:
+      host: postgres
+      database: location
+      username: postgres
+      password: postgres
+      changelog: changelog.yaml
+
+postgres:
+  container:
+    image: postgres:12-alpine
+  init:
+    database: postgres
+    password: postgres

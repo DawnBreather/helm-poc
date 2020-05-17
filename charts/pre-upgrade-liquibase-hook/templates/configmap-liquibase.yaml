@@ -1,0 +1,11 @@
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: liquibase-envvar
+data:
+  LIQUIBASE_HOST: {{ .Values.liquibase.config.env.host }}
+  LIQUIBASE_DATABASE: {{ .Values.liquibase.config.env.database }}
+  LIQUIBASE_USERNAME: {{ .Values.liquibase.config.env.username }}
+  LIQUIBASE_PASSWORD: {{ .Values.liquibase.config.env.password }}
+  LIQUIBASE_CHANGELOG: {{ .Values.liquibase.config.env.changelog }}

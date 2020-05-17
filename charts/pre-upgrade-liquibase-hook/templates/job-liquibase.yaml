@@ -1,0 +1,21 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: liquibase-job
+  labels:
+    workload/name: liquibase-job
+  annotations:
+    "helm.sh/hook": pre-upgrade
+spec:
+  template:
+    metadata:
+      labels:
+        workload/name: liquibase-job
+    spec:
+      containers:
+        - name: liquibase-job
+          image: {{ .Values.liquibase.container.image }}
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: liquibase-envvar

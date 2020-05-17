@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    workload/name: postgres
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      workload/name: postgres
+  template:
+    metadata:
+      labels:
+        workload/name: postgres
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: {{ .Values.postgres.init.database }} #location
+        - name: POSTGRES_PASSWORD
+          value: {{ .Values.postgres.init.password }} #postgres
+        image: {{ .Values.postgres.container.image }} #postgres:12-alpine
+        imagePullPolicy: IfNotPresent
+        name: postgres
+        ports:
+        - containerPort: 5432
+          name: psql
+          protocol: TCP
+        stdin: true
+        tty: true

@@ -13,5 +13,5 @@ postgres:
   container:
     image: postgres:12-alpine
   init:
-    database: postgres
+    database: location
     password: postgres

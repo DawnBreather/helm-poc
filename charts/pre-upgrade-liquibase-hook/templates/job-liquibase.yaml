@@ -16,7 +16,7 @@ spec:
       containers:
         - name: liquibase-job
           image: {{ .Values.liquibase.container.image }}
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: liquibase-envvar
